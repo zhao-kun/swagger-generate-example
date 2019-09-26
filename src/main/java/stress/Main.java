@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Slf4j
 @SpringBootApplication
-@Api("/", description="Stress test controller")
 public class Main {
 
 	public static void main(String[] args) {
@@ -22,7 +21,6 @@ public class Main {
 
 
 	@GetMapping("/stress/sleep50")
-	@ApiOperation("Sleep 50 millseconds and return a string")
 	public String sleep50() {
 		this.sleep(50);
 		return "Sleep 50";
@@ -38,14 +36,12 @@ public class Main {
 	}
 
 	@GetMapping("/stress/sleep100")
-	@ApiOperation("Sleep 100 millseconds and return a string")
 	public String sleep100() {
 		this.sleep(100);
 		return "Sleep 100";
 	}
 
 	@GetMapping("/stress/sleep200")
-	@ApiOperation("Sleep 200 millseconds and return a string")
 	public String sleep200() {
 		this.sleep(200);
 		return "Sleep 200";
