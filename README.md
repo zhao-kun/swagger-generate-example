@@ -1,5 +1,5 @@
 # swagger-generate-example
-The codebase dedicated to demonstrate how to leverage kongchen/swagger-maven-plugin to generate swagger
+The codebase dedicated to demonstrate how to leverage kongchen/swagger-maven-plugin to generate swagger document
 
 # Generate swagger document
 
