@@ -51,7 +51,7 @@ public class Main {
 		return "Sleep 200";
 	}
 
-	@GetMapping("sayHello/{one}")
+	@GetMapping("/sayHello/{one}")
 	@ApiResponse(code = 400,message = "parameter error")
 	public ResponseEntity<Hello> sayHello(@PathVariable("one") @RequestParam("hello") String one) {
 		return ResponseEntity.ok(new Hello());
