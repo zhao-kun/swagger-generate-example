@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.megaease</groupId>
+	<artifactId>stress-test</artifactId>
+	<version>1.0-SNAPSHOT</version>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<spring-cloud.version>Greenwich.SR2</spring-cloud.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<springfox.version>2.9.2</springfox.version>
+		<swagger-maven-plugin-version>3.1.7</swagger-maven-plugin-version>
+	</properties>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.7.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${springfox.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${springfox.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-bean-validators</artifactId>
+			<version>${springfox.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.8</version>
+		</dependency>
+	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.github.kongchen</groupId>
+				<artifactId>swagger-maven-plugin</artifactId>
+				<version>${swagger-maven-plugin-version}</version>
+				<configuration>
+					<apiSources>
+						<apiSource>
+							<springmvc>true</springmvc>
+							<schemes>http,https</schemes>
+							<basePath>/</basePath>
+							<locations>stress</locations>
+							<info>
+								<title>${project.name}</title>
+								<termsOfService>Please read on https://megaease.com/terms-of-service</termsOfService>
+								<description>${project.description}. More on: http://megaease.com/${project.artifactId}
+								</description>
+								<contact>
+									<name>MegaEase LLC
+									</name>
+									<url>https://megaease.com</url>
+									<email>contact@megaease.com</email>
+								</contact>
+								<license>
+									<name>Apache License v2.0</name>
+									<url>https://www.apache.org/licenses/LICENSE-2.0.html</url>
+								</license>
+								<version>${project.version}</version>
+							</info>
+							<attachSwaggerArtifact>true</attachSwaggerArtifact>
+							<swaggerApiReader>com.github.kongchen.swagger.docgen.reader.SpringMvcApiReader
+							</swaggerApiReader>
+							<swaggerExtensions>com.github.kongchen.swagger.docgen.spring.SpringSwaggerExtension
+							</swaggerExtensions>
+							<!-- <modelConverters>io.swagger.validator.BeanValidator</modelConverters> -->
+							<swaggerDirectory>${project.build.directory}/swagger</swaggerDirectory>
+							<swaggerFileName>swagger</swaggerFileName>
+							<outputFormats>yaml</outputFormats>
+							<attachSwaggerArtifact>true</attachSwaggerArtifact>
+						</apiSource>
+					</apiSources>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+
+	</build>
+
+
+</project>
