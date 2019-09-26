@@ -6,3 +6,5 @@ The codebase dedicated to demonstrate how to leverage kongchen/swagger-maven-plu
 ```
 mvn swagger:generate
 ```
+
+Generated swagger document is located in `${project.build.directory}/swagger`
